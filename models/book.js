@@ -5,35 +5,38 @@ const createBook = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-
         title: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         author: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         price: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         },
-
         img: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            foreignKey: true
+        year: {
+            type: DataTypes.INTEGER, // Assicurati che sia un INTEGER
+            allowNull: false
+        },
+        description: {
+            type: DataTypes.TEXT, // Usa TEXT per descrizioni più lunghe
+            allowNull: true
         }
+    }, {
+        timestamps: true // Questo abilita createdAt e updatedAt
     });
 
     return Book;
 };
 
 export default createBook;
+
+
+

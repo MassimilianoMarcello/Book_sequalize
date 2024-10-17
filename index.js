@@ -39,8 +39,8 @@ app.set('views', path.join(PATH, 'views'));
 app.use(logger);
 
 // use routes
-app.use('/api', userRoutes);
-app.use('/api', bookRoutes);
+app.use('/users', userRoutes);
+app.use('/books', bookRoutes);
 
 // handle 404
 app.use('*', (req, res) => {

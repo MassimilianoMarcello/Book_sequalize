@@ -1,0 +1,24 @@
+<main class="container">
+    <h1>Book Store</h1>
+    <div class="book-grid">
+        <% if (books && books.length > 0) { %>
+            <% books.forEach(book => { %>
+                <div class="card book-card">
+                    <img src="<%= book.img %>" alt="<%= book.title %>" class="book-image">
+                    <div class="book-info">
+                        <h2><%= book.title %></h2>
+                        <p>Author: <%= book.author %></p>
+                        <p>Year: <%= book.year %></p>
+                        <p class="price">€<%= parseFloat(book.price).toFixed(2) %></p>
+                        <a href="/books/books/<%= book.id %>" class="details-link">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No books available.</p>
+        <% } %>
+    </div>
+</main>
+

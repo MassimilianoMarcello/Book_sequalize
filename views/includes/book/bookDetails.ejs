@@ -1,0 +1,40 @@
+<div class="book-details">
+    <h1><%= book.title %></h1> <!-- Cambiato da book.name a book.title -->
+    <p><strong>Author:</strong> <%= book.author %></p>
+    <p><strong>Publication Year:</strong> <%= book.year %></p>
+    <p><strong>Price:</strong> $<%= book.price %></p>
+
+    <% if (book.img) { %> <!-- Cambiato da image_url a img -->
+        <div class="book-image">
+            <img src="<%= book.img %>" alt="<%= book.title %> cover image"> <!-- Cambiato da book.name a book.title -->
+        </div>
+    <% } else { %>
+        <p>No image available</p>
+    <% } %>
+  
+    <div class="book-description">
+        <p><strong>Description:</strong> <%= book.description ? book.description : 'No description available' %></p>
+    </div>
+    
+    <a href="/books/books" class="back-to-list">Back to Books List</a>
+  
+    <a href="/books/update-book/<%= book.id %>" class="update-book-button">
+        Update Book
+    </a>
+    
+    <form action="/books/delete-book/<%= book.id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit" class="delete-book-button" onclick="return confirm('Are you sure you want to delete this book?');">
+            Delete Book
+        </button>
+    </form>
+    
+    <form action="/cart/add" method="POST">
+        <input type="hidden" name="bookId" value="<%= book.id %>"> <!-- ID del libro -->
+        <input type="number" name="quantity" id="quantity" value="1" min="1" required> 
+        <button type="submit">Add to Cart</button>
+    </form>
+    <a href="/cart">View Cart</a> <!-- Aggiungi questo link -->
+</div>
+
+
+
