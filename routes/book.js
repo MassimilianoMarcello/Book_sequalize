@@ -1,7 +1,7 @@
 import express from 'express';
 import bookControllers from '../controllers/book.js';
-// import verifyToken from '../middleware/verifyToken.js';
-// import verifyAdmin from '../middleware/verifyAdmin.js';
+import verifyToken from '../middleware/verifyToken.js';
+
 
 const router = express.Router();
 const {
@@ -15,11 +15,11 @@ const {
 } = bookControllers;
 
 router.get('/books', getAll);
-router.get('/books/:id', getOne);
-router.post('/add-book', addBook);
-router.put('/update-book/:id', updateBook);
+router.get('/books/:id',verifyToken, getOne);
+router.post('/add-book',verifyToken, addBook);
+router.put('/update-book/:id',verifyToken, updateBook);
 
-router.delete('/delete-book/:id', removeBook);
-router.get('/add-book', addBookForm);
-router.get('/update-book/:id', updateBookForm);
+router.delete('/delete-book/:id',verifyToken, removeBook);
+router.get('/add-book',verifyToken, addBookForm);
+router.get('/update-book/:id',verifyToken, updateBookForm);
 export default router;

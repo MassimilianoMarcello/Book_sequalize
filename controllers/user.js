@@ -11,9 +11,12 @@ const User = db.users;
 
 const userControllers = {
     getLoginForm: (req, res) => {
+        const token = req.cookies.token;
         res.status(200).render('layout', {
             title: 'Enter email and password',
             body: 'includes/user/loginForm',
+            token
+           
         });
     },
    
@@ -71,9 +74,11 @@ const userControllers = {
     
 
     getRegistrationForm: (req, res) => {
+        const token = req.cookies.token;
         res.status(200).render('layout', {
             title: 'User Registration',
             body: 'includes/user/userRegistrationForm',
+            token
         });
     },
     loginUser: async (req, res) => {
@@ -91,10 +96,12 @@ const userControllers = {
             }
     
             const token = jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
-                expiresIn: '1h', 
+                expiresIn: '1h',
             });
     
-            // res.status(200).json({ token }); 
+            // set  token as a cookie
+            res.cookie('token', token, { httpOnly: true });
+    
             return res.status(200).redirect('/books/books');
         } catch (error) {
             console.error('Error during login:', error);
@@ -104,9 +111,10 @@ const userControllers = {
     
     
     logoutUser: (req, res) => {
-       
-        res.status(201).redirect('/users/login');
-    }
+        res.clearCookie('token');  
+        res.status(200).redirect('/users/login');
+    },
+    
 };
 
 export default userControllers;
