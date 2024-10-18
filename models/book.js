@@ -22,15 +22,15 @@ const createBook = (sequelize, DataTypes) => {
             allowNull: false
         },
         year: {
-            type: DataTypes.INTEGER, // Assicurati che sia un INTEGER
+            type: DataTypes.INTEGER, 
             allowNull: false
         },
         description: {
-            type: DataTypes.TEXT, // Usa TEXT per descrizioni più lunghe
+            type: DataTypes.TEXT, 
             allowNull: true
         }
     }, {
-        timestamps: true // Questo abilita createdAt e updatedAt
+        timestamps: true 
     });
 
     return Book;

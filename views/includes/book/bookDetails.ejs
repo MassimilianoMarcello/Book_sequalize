@@ -4,9 +4,9 @@
     <p><strong>Publication Year:</strong> <%= book.year %></p>
     <p><strong>Price:</strong> $<%= book.price %></p>
 
-    <% if (book.img) { %> <!-- Cambiato da image_url a img -->
+    <% if (book.img) { %> 
         <div class="book-image">
-            <img src="<%= book.img %>" alt="<%= book.title %> cover image"> <!-- Cambiato da book.name a book.title -->
+            <img src="<%= book.img %>" alt="<%= book.title %> cover image"> 
         </div>
     <% } else { %>
         <p>No image available</p>

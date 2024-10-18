@@ -99,7 +99,7 @@ const bookControllers = {
 
             console.log('Book updated successfully');
 
-            // Reindirizza a una pagina di conferma o al dettaglio del libro aggiornato
+            
             res.redirect(`/books/books/${bookId}`);
         } catch (error) {
             console.error('Error updating book:', error);
